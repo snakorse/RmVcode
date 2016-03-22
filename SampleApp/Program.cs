@@ -10,10 +10,8 @@ namespace SampleApp
     {
         static void Main(string[] args)
         {
-            //var manager = new VcodeManager();
-            //manager.GetVcode(new VcodeEventArgs(VcodeImgType.Any, null));
-            string a = null;
-            Console.WriteLine(a ?? "1" + "2");
+            var manager = new VcodeManager();
+            manager.GetVcode(new VcodeEventArgs(VcodeImgType.Any, null));
             Console.Read();
         }
     }

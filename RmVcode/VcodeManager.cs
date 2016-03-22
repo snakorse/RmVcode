@@ -57,6 +57,10 @@ namespace RmVcode
             RegisterPlatform(new ZhiMaVcode(null, null));
         }
 
+        /// <summary>
+        /// 注册新的打码平台实现类
+        /// </summary>
+        /// <param name="vcodeProvider"></param>
         public void RegisterPlatform(VcodeProvider vcodeProvider)
         {
             if (vcodeProvider == null)
@@ -65,6 +69,16 @@ namespace RmVcode
             vcodeDict[vcodeProvider.Platform] = vcodeProvider;
         }
 
+        /// <summary>
+        /// 更改已注册的打码平台的打码账户信息
+        /// </summary>
+        /// <param name="platform"></param>
+        /// <param name="user"></param>
+        /// <param name="pwd"></param>
+        /// <param name="softId"></param>
+        /// <param name="softKey"></param>
+        /// <param name="tag"></param>
+        /// <returns></returns>
         public bool InitializePlatform(VcodePlatform platform, string user, string pwd, string softId = null, string softKey = null, object tag = null)
         {
             if (platform == null)
@@ -80,6 +94,10 @@ namespace RmVcode
                 || vcode.SoftId != softId || vcode.SoftKey != softKey || vcode.Tag != tag);
         }
 
+        /// <summary>
+        /// 获取当前选中打码平台中的账户余额
+        /// </summary>
+        /// <returns></returns>
         public decimal GetCredit()
         {
             if (currentProvider == null)
@@ -88,6 +106,11 @@ namespace RmVcode
             return currentProvider.GetCredit();
         }
 
+        /// <summary>
+        /// 使用当前选中打码平台打码
+        /// </summary>
+        /// <param name="e"></param>
+        /// <returns></returns>
         public bool GetVcode(VcodeEventArgs e)
         {
             if (currentProvider == null)
@@ -96,6 +119,11 @@ namespace RmVcode
             return currentProvider.GetVcode(e);
         }
 
+        /// <summary>
+        /// 上传错误码
+        /// </summary>
+        /// <param name="e"></param>
+        /// <returns></returns>
         public bool ReportErr(VcodeEventArgs e)
         {
             if (e == null)
