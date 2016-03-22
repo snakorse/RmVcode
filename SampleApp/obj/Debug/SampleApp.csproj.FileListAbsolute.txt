@@ -1,0 +1,7 @@
+D:\Github\Repos\RmVcode\SampleApp\bin\Debug\SampleApp.exe
+D:\Github\Repos\RmVcode\SampleApp\bin\Debug\SampleApp.pdb
+D:\Github\Repos\RmVcode\SampleApp\bin\Debug\RmVcode.dll
+D:\Github\Repos\RmVcode\SampleApp\bin\Debug\RmVcode.pdb
+D:\Github\Repos\RmVcode\SampleApp\obj\Debug\SampleApp.csprojResolveAssemblyReference.cache
+D:\Github\Repos\RmVcode\SampleApp\obj\Debug\SampleApp.exe
+D:\Github\Repos\RmVcode\SampleApp\obj\Debug\SampleApp.pdb
