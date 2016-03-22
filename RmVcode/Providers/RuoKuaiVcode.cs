@@ -21,20 +21,20 @@ namespace RmVcode.Providers
         {
             if(type == VcodeImgType.Any) return "3000";
             if (type == VcodeImgType.AnyNum) return "1000";
-            if(type == VcodeImgType.AnyAlp) return "2000";
-            if(type == VcodeImgType.AnyAan) return "3000";
-            if(type == VcodeImgType.AnyChi) return "4000";
+            if(type == VcodeImgType.AnyAlpha) return "2000";
+            if(type == VcodeImgType.AnyAlphaOrNum) return "3000";
+            if(type == VcodeImgType.AnyChinese) return "4000";
             if(type == VcodeImgType.Num4) return "1040";
             if(type == VcodeImgType.Num5) return "1050";
             if(type == VcodeImgType.Num6) return "1060";
-            if(type == VcodeImgType.Alp4) return "2040";
-            if(type == VcodeImgType.Alp5) return "2050";
-            if(type == VcodeImgType.Alp6) return "2060";
-            if(type == VcodeImgType.AaN4) return "3040";
-            if(type == VcodeImgType.AaN5) return "3050";
-            if(type == VcodeImgType.AaN6) return "3060";
-            if(type == VcodeImgType.Chi2) return "4020";
-            if(type == VcodeImgType.Chi4) return "4040";
+            if(type == VcodeImgType.Alpha4) return "2040";
+            if(type == VcodeImgType.Alpha5) return "2050";
+            if(type == VcodeImgType.Alpha6) return "2060";
+            if(type == VcodeImgType.AlphaOrNum4) return "3040";
+            if(type == VcodeImgType.AlphaOrNum5) return "3050";
+            if(type == VcodeImgType.AlphaOrNum6) return "3060";
+            if(type == VcodeImgType.Chinese2) return "4020";
+            if(type == VcodeImgType.Chinese4) return "4040";
 
             return null;
         }
