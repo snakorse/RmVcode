@@ -32,6 +32,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,6 +46,12 @@
     <Compile Include="Providers\RuoKuaiVcode.cs" />
     <Compile Include="Providers\UUWiseVcode.cs" />
     <Compile Include="Providers\ZhiMaVcode.cs" />
+    <Compile Include="Utils\ManualForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utils\ManualForm.designer.cs">
+      <DependentUpon>ManualForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="VcodeEventArgs.cs" />
     <Compile Include="VcodeManager.cs" />
     <Compile Include="VcodeProvider.cs" />
@@ -53,7 +61,12 @@
     <Compile Include="VcodePlatform.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Utils\" />
+    <Folder Include="Dlls\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Utils\ManualForm.resx">
+      <DependentUpon>ManualForm.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
