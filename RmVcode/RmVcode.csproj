@@ -34,6 +34,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dlls\FastVerCode.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -43,6 +45,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Providers\ChaoRenVcode.cs" />
@@ -65,6 +68,9 @@
     <Compile Include="VcodePlatform.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="BuildPackage.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="RmVcode.nuspec" />
   </ItemGroup>
   <ItemGroup>

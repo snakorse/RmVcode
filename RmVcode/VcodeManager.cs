@@ -91,8 +91,19 @@ namespace RmVcode
             }
 
             var vcode = vcodeDict[platform];
-            return vcode.Initialize(vcode.Username != user || vcode.Password != pwd
-                || vcode.SoftId != softId || vcode.SoftKey != softKey || vcode.Tag != tag);
+            var force = vcode.Username != user || vcode.Password != pwd
+                || vcode.SoftId != softId || vcode.SoftKey != softKey || vcode.Tag != tag;
+            if (!string.IsNullOrEmpty(user))
+                vcode.Username = user;
+            if (!string.IsNullOrEmpty(pwd))
+                vcode.Password = pwd;
+            if (!string.IsNullOrEmpty(softId))
+                vcode.SoftId = softId;
+            if (!string.IsNullOrEmpty(softKey))
+                vcode.SoftKey = softKey;
+            if (tag != null)
+                vcode.Tag = tag;
+            return vcode.Initialize(force);
         }
 
         /// <summary>
