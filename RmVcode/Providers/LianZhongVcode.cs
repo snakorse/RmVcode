@@ -39,12 +39,27 @@ namespace RmVcode.Providers
 
         protected override bool InternalGetVcode(string typeCode, byte[] img, out string result, out string vcodeId, out string extraMsg)
         {
-            throw new NotImplementedException();
+            result = vcodeId = extraMsg = null;
+            var resp = FastVerCode.VerCode.RecByte_A(img, img.Length, this.user, this.pwd, this.softKey);
+            if(string.IsNullOrEmpty(resp) || !resp.Contains("|!|"))
+            {
+                extraMsg = resp;
+                return false;
+            }
+
+            var arr = resp.Split(new[] { "|!|" }, StringSplitOptions.None);
+            result = arr[0];
+            vcodeId = arr[1];
+            extraMsg = resp;
+            return true;
         }
 
         protected override bool InternalReportErr(string vcodeId)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(user) || string.IsNullOrEmpty(vcodeId))
+                return false;
+            FastVerCode.VerCode.ReportError(this.user, vcodeId);
+            return true;
         }
     }
 }
