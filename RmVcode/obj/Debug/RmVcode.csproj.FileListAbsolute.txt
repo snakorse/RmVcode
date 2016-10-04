@@ -1,4 +1,0 @@
-D:\Github\Repos\RmVcode\RmVcode\bin\Debug\RmVcode.dll
-D:\Github\Repos\RmVcode\RmVcode\bin\Debug\RmVcode.pdb
-D:\Github\Repos\RmVcode\RmVcode\obj\Debug\RmVcode.dll
-D:\Github\Repos\RmVcode\RmVcode\obj\Debug\RmVcode.pdb

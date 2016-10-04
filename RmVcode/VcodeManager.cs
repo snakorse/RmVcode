@@ -45,6 +45,7 @@ namespace RmVcode
         public VcodeManager()
         {
             AddDefaultPlatforms();
+            CurrentPlatform = VcodePlatform.Manual;
         }
 
         private void AddDefaultPlatforms()
