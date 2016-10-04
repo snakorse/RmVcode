@@ -64,14 +64,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VcodePlatform.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="RmVcode.nuspec" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Utils\ManualForm.resx">
       <DependentUpon>ManualForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Dlls\FastVerCode.dll" />
+    <None Include="dependencys\FastVerCode.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

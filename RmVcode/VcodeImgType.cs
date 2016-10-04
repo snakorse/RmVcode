@@ -11,6 +11,7 @@ namespace RmVcode
         private Guid guid;
         private string name;
 
+
         private static VcodeImgType any = new VcodeImgType(new Guid("{b96b9c0a-0728-11d3-9d7b-0000f81ef32e}"), "任意类型");
         private static VcodeImgType anyNum = new VcodeImgType(new Guid("{b96b9c0b-0728-11d3-9d7b-0000f81ef32e}"), "任意长度数字");
         private static VcodeImgType anyAlpha = new VcodeImgType(new Guid("{b96b9c0c-0728-11d3-9d7b-0000f81ef32e}"), "任意长度字母");
