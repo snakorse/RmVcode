@@ -32,7 +32,7 @@
   <ItemGroup>
     <Reference Include="FastVerCode, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Dlls\FastVerCode.dll</HintPath>
+      <HintPath>dependencys\FastVerCode.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
