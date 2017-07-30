@@ -16,7 +16,7 @@ namespace RmVcode.Providers
             if (this.softId == null || this.softKey == null)
             {
                 this.softId = "";
-                this.softKey = "3680a3fbfda740aa3e9e8968b72dfe4b";
+                this.softKey = "12987d18269fffd9ad9e0a0d33dd96e9";
             }
         }
 

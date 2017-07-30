@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DotNet4.Utilities;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace RmVcode.Providers
 {
@@ -15,28 +18,35 @@ namespace RmVcode.Providers
                 this.softId = "2207";
                 this.softKey = "76fd8d76008954aea8175cb364291db3";
             }
+
+            AddImgType(VcodeImgType.Alpha4, "2040");
+            AddImgType(VcodeImgType.Alpha5, "2050");
+            AddImgType(VcodeImgType.Alpha6, "2060");
+            AddImgType(VcodeImgType.AnyAlpha, "2000");
+
+            AddImgType(VcodeImgType.AlphaOrNum4, "3040");
+            AddImgType(VcodeImgType.AlphaOrNum5, "3050");
+            AddImgType(VcodeImgType.AlphaOrNum6, "3060");
+            AddImgType(VcodeImgType.AnyAlphaOrNum, "3000");
+
+            AddImgType(VcodeImgType.Chinese2, "4020");
+            AddImgType(VcodeImgType.Chinese4, "4040");
+            AddImgType(VcodeImgType.AnyChinese, "4000");
+
+            AddImgType(VcodeImgType.Num4, "1040");
+            AddImgType(VcodeImgType.Num5, "1050");
+            AddImgType(VcodeImgType.Num6, "1060");
+            AddImgType(VcodeImgType.AnyNum, "1000");
+
+            AddImgType(VcodeImgType.Any, "5000");
         }
 
         protected override string GetImageTypeCode(VcodeImgType type)
         {
-            if(type == VcodeImgType.Any) return "3000";
-            if (type == VcodeImgType.AnyNum) return "1000";
-            if(type == VcodeImgType.AnyAlpha) return "2000";
-            if(type == VcodeImgType.AnyAlphaOrNum) return "3000";
-            if(type == VcodeImgType.AnyChinese) return "4000";
-            if(type == VcodeImgType.Num4) return "1040";
-            if(type == VcodeImgType.Num5) return "1050";
-            if(type == VcodeImgType.Num6) return "1060";
-            if(type == VcodeImgType.Alpha4) return "2040";
-            if(type == VcodeImgType.Alpha5) return "2050";
-            if(type == VcodeImgType.Alpha6) return "2060";
-            if(type == VcodeImgType.AlphaOrNum4) return "3040";
-            if(type == VcodeImgType.AlphaOrNum5) return "3050";
-            if(type == VcodeImgType.AlphaOrNum6) return "3060";
-            if(type == VcodeImgType.Chinese2) return "4020";
-            if(type == VcodeImgType.Chinese4) return "4040";
+            if (imgTypeDict.ContainsKey(type))
+                return imgTypeDict[type];
 
-            return null;
+            return "5000";
         }
 
         protected override bool InternalInitialize(out string errMsg)
@@ -52,16 +62,119 @@ namespace RmVcode.Providers
 
         protected override bool InternalGetVcode(string typeCode, byte[] img, out string result, out string vcodeId, out string extraMsg)
         {
-            throw new NotImplementedException();
+            result = vcodeId = extraMsg = null;
+
+            #region 提交信息模板
+            const string postTpl = @"---------------itsfunny
+Content-Disposition: form-data; name=""username""
+
+{username}
+---------------itsfunny
+Content-Disposition: form-data; name=""password""
+
+{password}
+---------------itsfunny
+Content-Disposition: form-data; name=""typeid""
+
+{typeid}
+---------------itsfunny
+Content-Disposition: form-data; name=""timeout""
+
+{timeout}
+---------------itsfunny
+Content-Disposition: form-data; name=""softid""
+
+{softid}
+---------------itsfunny
+Content-Disposition: form-data; name=""softkey""
+
+{softkey}
+---------------itsfunny
+Content-Disposition: form-data; name=""image""; filename=""1.png""
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: base64
+
+{base64img}
+---------------itsfunny--";
+            #endregion
+
+            var postdata = postTpl
+                            .Replace("{username}", Username)
+                            .Replace("{password}", Password)
+                            .Replace("{typeid}", typeCode)
+                            .Replace("{timeout}", "60")
+                            .Replace("{softid}", SoftId)
+                            .Replace("{softkey}", SoftKey)
+                            .Replace("{base64img}", Convert.ToBase64String(img));
+
+            var item = new HttpItem
+            {
+                URL = "http://api.ruokuai.com/create.json",
+                Method = "POST",
+                Accept = "*/*",
+                ContentType = "multipart/form-data; boundary=-------------itsfunny",
+                Postdata = postdata,
+            };
+
+            var resp = new HttpHelper().GetHtml(item);
+            if (resp.StatusCode != System.Net.HttpStatusCode.OK)
+            {
+                extraMsg = "请求结果错误";
+                return false;
+            }
+
+            var json = JsonConvert.DeserializeObject(resp.Html) as JObject;
+            result = json.Value<string>("Result");
+            vcodeId = json.Value<string>("Id");
+            extraMsg = json.Value<string>("Error");
+            
+            return !string.IsNullOrEmpty(result);
         }
 
         protected override bool InternalReportErr(string vcodeId)
         {
-            throw new NotImplementedException();
+            #region 提交信息模板
+            const string postTpl = @"---------------itsfunny
+Content-Disposition: form-data; name=""username""
+
+{username}
+---------------itsfunny
+Content-Disposition: form-data; name=""password""
+
+{password}
+---------------itsfunny
+Content-Disposition: form-data; name=""softid""
+
+{softid}
+---------------itsfunny
+Content-Disposition: form-data; name=""softkey""
+
+{softkey}
+---------------itsfunny
+Content-Disposition: form-data; name=""id""; 
+
+{id}
+---------------itsfunny--";
+            #endregion
+            var postdata = postTpl
+                            .Replace("{username}", Username)
+                            .Replace("{password}", Password)
+                            .Replace("{softid}", SoftId)
+                            .Replace("{softkey}", SoftKey)
+                            .Replace("{id}", vcodeId);
+            var item = new HttpItem
+            {
+                URL = "http://api.ruokuai.com/reporterror.json",
+                Method = "POST",
+                Accept = "*/*",
+                ContentType = "multipart/form-data; boundary=-------------itsfunny",
+                Postdata = postdata,
+            };
+
+            var resp = new HttpHelper().GetHtml(item);
+            var json = JsonConvert.DeserializeObject(resp.Html) as JObject;
+
+            return json.Value<string>("Result") != null;
         }
-
-        #region Inner method
-
-        #endregion
     }
 }

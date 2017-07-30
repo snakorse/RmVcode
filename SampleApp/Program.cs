@@ -11,7 +11,11 @@ namespace SampleApp
         static void Main(string[] args)
         {
             var manager = new VcodeManager();
-            manager.GetVcode(new VcodeEventArgs(VcodeImgType.Any, null));
+            manager.InitializePlatform(VcodePlatform.RuoKuai, "kcottys", "hsh1984112");
+            manager.CurrentPlatform = VcodePlatform.RuoKuai;
+            var image = System.IO.File.ReadAllBytes(@"D:\Project\Code\C#\MSMailRegister\MSMailRegister\AppTest\bin\Debug\captcha.png");
+            var imgArgs = new VcodeEventArgs(VcodeImgType.AnyAlphaOrNum, image.ToArray());
+            manager.GetVcode(imgArgs);
             Console.Read();
         }
     }

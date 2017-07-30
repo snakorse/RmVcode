@@ -34,6 +34,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>dependencys\FastVerCode.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -53,6 +57,7 @@
     <Compile Include="Providers\RuoKuaiVcode.cs" />
     <Compile Include="Providers\UUWiseVcode.cs" />
     <Compile Include="Providers\ZhiMaVcode.cs" />
+    <Compile Include="Utils\HttpHelper.cs" />
     <Compile Include="Utils\ManualForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +76,7 @@
     <None Include="BuildPackage.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="packages.config" />
     <None Include="RmVcode.nuspec" />
   </ItemGroup>
   <ItemGroup>
