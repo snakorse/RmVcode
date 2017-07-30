@@ -1,2 +1,2 @@
-﻿nuget pack ..\..\RmVcode.csproj
+nuget pack ..\..\RmVcode.csproj
 
