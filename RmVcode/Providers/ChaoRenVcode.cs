@@ -16,11 +16,6 @@ namespace RmVcode.Providers
             
         }
 
-        protected override string GetImageTypeCode(VcodeImgType type)
-        {
-            throw new NotImplementedException();
-        }
-
         protected override bool InternalInitialize(out string errMsg)
         {
             throw new NotImplementedException();

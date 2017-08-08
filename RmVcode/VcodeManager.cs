@@ -80,7 +80,7 @@ namespace RmVcode
         /// <param name="softKey"></param>
         /// <param name="tag"></param>
         /// <returns></returns>
-        public bool InitializePlatform(VcodePlatform platform, string user, string pwd, string softId = null, string softKey = null, object tag = null)
+        public bool InitializePlatform(VcodePlatform platform, string user, string pwd, string softId = null, string softKey = null, object tag = null, bool setAsCurrentPlatform = false)
         {
             if (platform == null)
                 throw new ArgumentNullException("platform");
@@ -103,7 +103,10 @@ namespace RmVcode
                 vcode.SoftKey = softKey;
             if (tag != null)
                 vcode.Tag = tag;
-            return vcode.Initialize(force);
+            var result = vcode.Initialize(force);
+            if (result && setAsCurrentPlatform)
+                currentProvider = vcode;
+            return result;
         }
 
         /// <summary>

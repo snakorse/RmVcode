@@ -175,7 +175,13 @@ namespace RmVcode
             return vResult;
         }
 
-        protected abstract string GetImageTypeCode(VcodeImgType type);
+        protected virtual string GetImageTypeCode(VcodeImgType type)
+        {
+            if (imgTypeDict != null || !imgTypeDict.ContainsKey(type))
+                return null;
+
+            return imgTypeDict[type];
+        }
 
         protected abstract bool InternalGetVcode(string typeCode, byte[] img, out string result, out string vcodeId, out string extraMsg);
 

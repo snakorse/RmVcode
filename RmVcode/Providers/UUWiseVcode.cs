@@ -27,10 +27,5 @@ namespace RmVcode.Providers
         {
             throw new NotImplementedException();
         }
-
-        protected override string GetImageTypeCode(VcodeImgType type)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

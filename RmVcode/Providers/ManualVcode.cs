@@ -13,13 +13,7 @@ namespace RmVcode.Providers
         public ManualVcode()
             : base(VcodePlatform.Manual, null, null, null, null, null)
         {
-            
-        }
-
-        protected override string GetImageTypeCode(VcodeImgType type)
-        {
-            if (type == VcodeImgType.Any) return "0";
-            return null;
+            AddImgType(VcodeImgType.Any, "0");
         }
 
         protected override bool InternalInitialize(out string errMsg)

@@ -41,14 +41,6 @@ namespace RmVcode.Providers
             AddImgType(VcodeImgType.Any, "5000");
         }
 
-        protected override string GetImageTypeCode(VcodeImgType type)
-        {
-            if (imgTypeDict.ContainsKey(type))
-                return imgTypeDict[type];
-
-            return "5000";
-        }
-
         protected override bool InternalInitialize(out string errMsg)
         {
             errMsg = null;

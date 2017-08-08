@@ -18,12 +18,8 @@ namespace RmVcode.Providers
                 this.softId = "";
                 this.softKey = "12987d18269fffd9ad9e0a0d33dd96e9";
             }
-        }
 
-        protected override string GetImageTypeCode(VcodeImgType type)
-        {
-            if (type == VcodeImgType.Any) return "0";
-            return null;
+            AddImgType(VcodeImgType.Any, "0");
         }
 
         protected override bool InternalInitialize(out string errMsg)
