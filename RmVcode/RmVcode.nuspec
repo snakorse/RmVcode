@@ -9,7 +9,7 @@
     <projectUrl>https://github.com/snakorse/RmVcode</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>目前支持：ManaulPlatform 和 LianzhongPlatform.</releaseNotes>
+    <releaseNotes>目前支持：ManaulPlatform,LianzhongPlatform和RuokuaiPlatform.</releaseNotes>
     <copyright>Copyright © 7cifsoft 2016</copyright>
   </metadata>
   <files>

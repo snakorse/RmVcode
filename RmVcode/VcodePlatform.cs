@@ -26,7 +26,7 @@ namespace RmVcode
         public static VcodePlatform ZhiMa { get { return zhima; } }
 
         public Guid Id { get { return guid; } }
-        public string Name { get; set; }
+        public string Name { get { return name; } }
 
         public VcodePlatform(Guid guid, string name = null)
         {
